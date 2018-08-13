@@ -4,8 +4,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
 class DishDetail extends Component {
 
-    render() {
-        var dish = this.props.selectedDish;
+    renderDish(dish) {
 
         if (dish != null) {
             return (
@@ -26,6 +25,10 @@ class DishDetail extends Component {
             );
         }
     }
+
+    render() {
+		return this.renderDish(this.props.selectedDish);
+	}
 }
 
 export default DishDetail;
