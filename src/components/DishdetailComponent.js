@@ -61,33 +61,11 @@ class DishDetail extends Component {
                 <div></div>
             );
         } else {
-            const comments = this.props.selectedDish.comments.map((c) => {
-                var d = new Date(c.date).toDateString().slice(4);
-                return (
-                    <li key={c.id}>
-                        <p>{c.comment}</p>
-                        <p>--{c.author}, {d} </p>
-                    </li>
-                );
-            });
+            var renderedDish = this.renderDish(this.props.selectedDish);
+            var renderedComments = this.renderComments(this.props.selectedDish.comments);
             return (
-                //this.renderDish(this.props.selectedDish) && this.renderComments(this.props.selectedDish.comments)
                 <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        <Card>
-                            <CardImg width="100%" src={this.props.selectedDish.image} alt={this.props.selectedDish.name} />
-                            <CardBody>
-                                <CardTitle>{this.props.selectedDish.name}</CardTitle>
-                                <CardText>{this.props.selectedDish.description}</CardText>
-                            </CardBody>
-                        </Card> 
-                    </div>
-                    <div className="col-12 col-md-5 m-1">
-                        <h4>Comments</h4>
-                        <ul className="list-unstyled">
-                            {comments}
-                        </ul>
-                    </div>
+                    {renderedDish}{renderedComments}
                 </div>
             );
         }
