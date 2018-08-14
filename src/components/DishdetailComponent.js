@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
-
 class DishDetail extends Component {
 
     renderComments(arr) {
@@ -9,7 +8,8 @@ class DishDetail extends Component {
             return <div></div>;
 
         const comments = arr.map((c) => {
-            var d = new Date(c.date).toDateString().slice(4);
+            //var d = new Date(c.date).toDateString().slice(4);
+            var d = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(c.date)));
             return (
                 <li key={c.id}>
                     <p>{c.comment}</p>
@@ -18,23 +18,17 @@ class DishDetail extends Component {
             );
         });
 
-        console.log("comments rendered")
-
         return (
             <div className="col-12 col-md-5 m-1">
                 <h4>Comments</h4>
                 <ul className="list-unstyled">
-                    {comments}
+                     {comments}
                 </ul>
-            </div>
+            </div>      
         );
-
     }
 
     renderDish(dish) {
-
-        if (dish != null) {
-            console.log("dish rendered");
             return (
                 <div className="col-12 col-md-5 m-1">
                     <Card>
@@ -44,28 +38,23 @@ class DishDetail extends Component {
                             <CardText>{dish.description}</CardText>
                         </CardBody>
                     </Card> 
-                </div>
-                
+                </div>    
             );
-        
-        } else {
-            return (
-                <div></div>
-            );
-        }
     }
 
     render() {
-        if(this.props.selectedDish==null) {
+        if(this.props.dish==null) {
             return (
                 <div></div>
             );
         } else {
-            var renderedDish = this.renderDish(this.props.selectedDish);
-            var renderedComments = this.renderComments(this.props.selectedDish.comments);
+            var renderedDish = this.renderDish(this.props.dish);
+            var renderedComments = this.renderComments(this.props.dish.comments);
             return (
-                <div className="row">
-                    {renderedDish}{renderedComments}
+                <div className="container">
+                    <div className="row">
+                        {renderedDish}{renderedComments}
+                    </div>
                 </div>
             );
         }
