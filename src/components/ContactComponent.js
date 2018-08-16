@@ -153,7 +153,7 @@ class Contact extends Component {
                             </Row>
                             <Row className="form-group">
                                 <Col md={{size: 6, offset: 2}}>
-                                    <div className="forn-check">
+                                    <div className="form-check">
                                         <Label check>
                                             <Control.checkbox model=".agree" name="agree"
                                                 className="form-check-input" /> {' '}
