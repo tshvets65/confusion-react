@@ -14,14 +14,12 @@ class Contact extends Component {
     constructor(props) {
         super(props);
 
-        this.handlerSubmit = this.handlerSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handlerSubmit(values) {
-        console.log("Current state is: " + JSON.stringify(values));
-        alert("Current state is: " + JSON.stringify(values));
+    handleSubmit(values) {
+        this.props.postFeedback(values);
         this.props.resetFeedbackForm();
-
     }
 
     render () { 
@@ -68,7 +66,7 @@ class Contact extends Component {
                         <h3>Send us Your Feedback</h3>
                     </div>
                     <div className="col-12 col-md-9">
-                        <Form model="feedback" onSubmit={(values) => this.handlerSubmit(values)}>
+                        <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="firstname" md={2}>First Name</Label>
                                 <Col md={10}>
